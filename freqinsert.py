@@ -1,6 +1,7 @@
 a = int(input("Quantos numeros vc vai colocar?:"))
 lista = []
 lista2 = []
+lista3 = []
 div = 0
 soma = 0
 for c in range(a):
@@ -9,4 +10,5 @@ for c in range(a):
   div = div + (b/a)
   soma += b
 lista2.append(soma)
-print('As frequencias sao: \n',lista,'\n A soma total das frequencias é:\n',lista2)
+lista3.append(div)
+print('As frequencias sao: \n',lista,'\n A soma total das frequencias é:\n',lista2,'\n A media das frequencias é de:\n',lista3)
