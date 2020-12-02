@@ -26,12 +26,23 @@ apple_pos = on_grind_random()
 apple = pygame.Surface((10, 10))
 apple.fill((255,0,0))
 
+lsd_pos = on_grind_random()
+lsd = pygame.Surface((10, 10))
+lsd.fill((0, 191, 255))
+
 my_direction = LEFT 
+pontos = 0
+fonte = pygame.font.SysFont('cambria', 15, bold = True, italic = True)
 
 clock = pygame.time.Clock()
 
 while True:
     clock.tick(10)
+    screen.fill((0,0,0))
+
+    msg = f'Pontos: {pontos}' 
+    txt = fonte.render(msg, True, (255, 255, 255))
+
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
@@ -49,6 +60,14 @@ while True:
     if collision(snake[0], apple_pos):
         apple_pos = on_grind_random()
         snake.append((0,0))
+        pontos = pontos + 1
+
+    if collision(snake[0], lsd_pos):
+        lsd_pos = on_grind_random()
+        pontos = pontos - 1
+        
+
+        
     
     for i in range(len(snake) - 1, 0, -1):
         snake[i] = (snake[i-1][0], snake[i-1][1])
@@ -65,8 +84,10 @@ while True:
 
     
     
-    screen.fill((0,0,0))
+    
     screen.blit(apple,apple_pos)
+    screen.blit(lsd, lsd_pos)
+    screen.blit(txt, (450,40))
     
     for pos in snake:
         screen.blit(snake_skin,pos)
